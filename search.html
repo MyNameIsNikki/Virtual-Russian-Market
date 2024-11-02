@@ -1,0 +1,29 @@
+<!-- search.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск товаров</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <input type="text" id="search" placeholder="Поиск товаров...">
+    <div id="results"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#search').on('input', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: 'search.php',
+                    type: 'GET',
+                    data: { q: query },
+                    success: function(data) {
+                        $('#results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
